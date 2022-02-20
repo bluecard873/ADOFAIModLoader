@@ -19,7 +19,7 @@ namespace ADOFAIModLoader
     public static class ModLoaderMain
     {
         public static Dictionary<Type, Mod> mods = new Dictionary<Type, Mod>();
-        public static Dictionary<Type, Plugin> plugins = new Dictionary<Type, Plugin>();
+        public static Dictionary<Type,Mod> plugins = new Dictionary<Type, Mod>();
 
         public static void LoadMods()
         {
@@ -49,10 +49,10 @@ namespace ADOFAIModLoader
                 var asm = Assembly.LoadFile(fa.FullName);
                 foreach (Type t in asm.GetTypes())
                 {
-                    if (t.BaseType.Equals(typeof(Plugin)))
+                    if (t.BaseType.Equals(typeof(Mod)))
                     {
-                        var i = (Plugin)Activator.CreateInstance(t);
-                        var pluginName = i.GetPluginName();
+                        var i = (Mod)Activator.CreateInstance(t);
+                        var pluginName = i.GetModName();
                         plugins.Add(t, i);
                         i.Startup();
                         ModLogger.InternalLog("Loaded Plugin " + pluginName);

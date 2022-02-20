@@ -260,7 +260,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Plugin.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="ModLoaderMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
