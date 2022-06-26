@@ -8,15 +8,29 @@ using System.Threading.Tasks;
 using UnityEngine;
 namespace ADOFAIModLoader
 {
-    public class Mod
+    public class Mod : MonoBehaviour
     {
         public virtual void Startup()
         {
 
         }
-        public virtual string GetModName()
+        public virtual string ModName
         {
-            return "Unknown";
+            get
+            {
+                return "Unknown";
+            }
+        }
+        public virtual string Author
+        {
+            get
+            {
+                return "Unknown";
+            }
+        }
+        public virtual List<GameObject> OnRenderSettings()
+        {
+            return new List<GameObject>();
         }
     }
     public class ModLogger
@@ -35,7 +49,7 @@ namespace ADOFAIModLoader
             if (mainclass.BaseType.Equals(typeof(Mod)))
             {
                 var i = ModLoaderMain.mods[mainclass];
-                msg1 = "[" + i.GetModName() + "] " + msg;
+                msg1 = "[" + i.ModName + "] " + msg;
             }
             Debug.Log(msg1);
             sw.WriteLine(msg1);
